@@ -22,13 +22,16 @@ print ("---------------------- 2 -----------------------")
 //используйте еще один массив с именами месяцев чтобы вывести название месяца + количество дней
 
 
-let months: [String] = ["January", "Fabuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+let months = [["January", "Fabuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"], [31, 28, 31, 30, 31, 30, 31, 30, 31, 30, 31, 31]]
 
-let daysInMonth: [Int] = [31, 28, 31, 30, 31, 30, 31, 30, 31, 30, 31, 31]
-
-for month in 1..<months.count {
-    print ("В \(months[month]) \(daysInMonth[month]) дней")
+for i in 0..<months[0].count {
+    let currentMonth = months[0][i]
+    let currentDays = months[1][i]
+    print("В \(currentMonth) \(currentDays) дней")
 }
+
+// чисто по тексту с проверкой вижу, что должен быть массив с названиями месяцев, не пойму, где это в задании
+let monthsArray = months[0]
 
 print ("------------------------------------------------------------------------------")
 
