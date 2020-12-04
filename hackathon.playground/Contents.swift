@@ -113,8 +113,10 @@ class ATM {
                 }
             }
 //        default:
-//            someBank.showError(error: .choosePayingMethod)
+//            someBank.showError(error: .badCredentials)
         }
+    } else {
+        someBank.showError(error: .badCredentials)
     }
   }
 }
@@ -198,11 +200,11 @@ struct BankServer: BankApi {
     }
     
     func showError(error: TextErrors) {
-        let error = """
+        let err = """
         Уважаемый \(user.userName), выполнение операции не может быть выполнено по следующей причине:
         \(error.rawValue)
         """
-        print(error)
+        print(err)
     }
     
     public mutating func topUpPhoneBalanceCash(pay: Float) { // пополнить баланс телефона наличными
@@ -283,10 +285,15 @@ struct User: UserData {
 }
 
 // данные пользователя в банке
-let currentUser: UserData = User(userName: "Vasiliy Khan", userCardId: "7594 8893 8854 2992", userCardPin: 666, userCash: 235.90, userBankDeposit: 7000.50, userPhone: "+7-902-998-43-42", userPhoneBalance: 5467.70)
+let currentUser: UserData = User(userName: "Василий Хан", userCardId: "7594 8893 8854 2992", userCardPin: 666, userCash: 235.90, userBankDeposit: 7000.50, userPhone: "+7-902-998-43-42", userPhoneBalance: 5467.70)
 
 // текущий сервер банка
 let bankClient = BankServer (user: currentUser)
 
 // введенные данные пользователя
-let atm001 = ATM(userCardId: "7594 8893 8854 2992", userCardPin: 566, someBank: bankClient, action: .putCash(depositAddAmount: 100), paymentMethod: .cash(cash: 100))
+let atm001 = ATM(
+    userCardId: "7594 8893 8854 2992",
+    userCardPin: 666,
+    someBank: bankClient,
+    action: .putCash(depositAddAmount: 100),
+    paymentMethod: .cash(cash: 100))
