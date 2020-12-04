@@ -289,4 +289,4 @@ let currentUser: UserData = User(userName: "Vasiliy Khan", userCardId: "7594 889
 let bankClient = BankServer (user: currentUser)
 
 // введенные данные пользователя
-let atm001 = ATM(userCardId: "7594 8893 8854 2992", userCardPin: 566, someBank: bankClient, action: .putCash(depositAddAmount: 100))
+let atm001 = ATM(userCardId: "7594 8893 8854 2992", userCardPin: 566, someBank: bankClient, action: .putCash(depositAddAmount: 100), paymentMethod: .cash(cash: 100))
